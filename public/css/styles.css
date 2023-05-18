@@ -56,11 +56,15 @@ body {
 }
 
 .navLinks ul li {
-  color: white;
   list-style-type: none;
   font-size: 1rem;
   font-family: Roboto, sans-serif;
   padding: 0.5rem 0rem;
+}
+
+.navLinks ul li a {
+  color: white;
+  text-decoration: none;
 }
 
 /* Body */
