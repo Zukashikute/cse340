@@ -195,10 +195,15 @@ article > div h2 {
 }
 
 /* Footer */
+footer {
+  margin: 1rem 0;
+}
+
 .copyright {
   font-size: 0.8rem;
   font-family: Roboto, sans-serif;
   color: #262626;
+  margin: 0;
 }
 
 @media screen and (min-width: 768px) {
