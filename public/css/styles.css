@@ -194,6 +194,102 @@ article > div h2 {
   padding-bottom: 0.5rem;
 }
 
+/* Cars View */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#inv-display li {
+  text-align: center;
+  list-style-type: none;
+  border: 1px solid #616161;
+  border-radius: 1rem;
+}
+
+#inv-display hr {
+  height: 5px;
+  background: #616161;
+}
+
+.vehicleListImage {
+  height: 135px;
+  overflow: hidden;
+}
+
+.vehicleListImage img {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  width: 100%;
+}
+
+.namePrice {
+  text-align: center;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.namePrice h2 {
+  margin: 0 0 0.5rem;
+  font-family: David Libre, serif;
+}
+
+.namePrice h2 a {
+  color: #0099ff;
+}
+
+.namePrice span {
+  font-family: Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* Car Single View */
+.vehicleContainer {
+  display: block;
+}
+
+.vehicleContainer div:first-child {
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.vehicleContainer div:first-child > img {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 2.5px 5px 10px rgba(0, 0, 0, 0.8);
+  margin-bottom: 1rem;
+}
+
+.vehicleContainer div:last-child p {
+  font-family: Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.vehicleContainer div:last-child p:nth-child(even) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.vehicleContainer div:last-child p:first-child {
+  padding: 0;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.vehicleContainer div:last-child p span {
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
 /* Footer */
 footer {
   margin: 1rem 0;
@@ -206,7 +302,7 @@ footer {
   margin: 0;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
   body {
     background-image: url("/images/site/checkerboard.jpg");
     background-repeat: repeat;
@@ -232,5 +328,16 @@ footer {
 
   .reviewSection {
     grid-area: auto;
+  }
+
+  /* Car Single View */
+  .vehicleContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .vehicleContainer div:first-child > img {
+    margin-bottom: 0rem;
   }
 }

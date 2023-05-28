@@ -40,13 +40,15 @@ Util.buildClassificationGrid = async function (data) {
       grid = '<ul id="inv-display">'
       data.forEach(vehicle => {
          grid += '<li>'
+         grid += '<div class="vehicleListImage">'
          grid += '<a href="../../inv/detail/' + vehicle.inv_id
             + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + 'details"><img src="' + vehicle.inv_thumbnail
             + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model
             + ' on CSE Motors" /></a>'
-         grid += '<div class="namePrice">'
+         grid += '</div>'
          grid += '<hr />'
+         grid += '<div class="namePrice">'
          grid += '<h2>'
          grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View '
             + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">'
@@ -78,10 +80,10 @@ Util.buildDetailView = async (data) => {
                    </div>
                    <div>
                      <p> ${vehicle.inv_make} ${vehicle.inv_model} Details </p>
-                     <p> Price: $${Intl.NumberFormat('en-US').format(vehicle.inv_price)} </p>
-                     <p> Description: ${vehicle.inv_description} </p>
-                     <p> Color: ${vehicle.inv_color} </p>
-                     <p> Miles: ${Intl.NumberFormat('en-US').format(vehicle.inv_miles)} </p>
+                     <p> Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)} </p>
+                     <p> Description: <span> ${vehicle.inv_description} </span> </p>
+                     <p> Color: <span> ${vehicle.inv_color} </span> </p>
+                     <p> Miles: <span> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} </span> </p>
                    </div>
                    `
       })
