@@ -84,6 +84,17 @@ main > h1 {
   font-weight: 700;
 }
 
+.notice {
+  font-family: Roboto, sans-serif;
+  font-style: italic;
+  text-align: center;
+  font-weight: 600;
+  list-style-type: none;
+  padding: 0;
+  color: red;
+  animation: move 5s linear infinite;
+}
+
 section {
   background-image: url("/images/vehicles/delorean.jpg");
   background-repeat: no-repeat;
@@ -300,6 +311,156 @@ article > div h2 {
   font-weight: 400;
 }
 
+/* Login and Register */
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.inputField input {
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.inputField input:focus:valid {
+  background: rgb(175, 207, 175);
+}
+
+.inputField input:focus:invalid {
+  background: rgb(214, 176, 176);
+}
+
+.inputFieldInfo:first-child {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.inputFieldInfo {
+  font-size: 0.85rem;
+  font-style: italic;
+  margin: 0.5rem;
+  font-weight: 500;
+}
+
+.formBtn {
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.formBtn:hover {
+  cursor: pointer;
+  animation: buttonHoverDark 3s linear infinite;
+}
+
+/* Login View */
+.login,
+.addClassification {
+  max-width: 300px;
+  padding: 1rem;
+  border: 2px solid #262626;
+  background: #3eb2ff;
+  border-radius: 0.75rem;
+  margin: auto;
+  font-family: Roboto, sans-serif;
+}
+
+.formLink {
+  font-size: 1rem;
+}
+
+.formLink span a {
+  color: black;
+}
+
+/* Register View */
+.register,
+.addInventory {
+  max-width: 300px;
+  padding: 1rem;
+  border: 2px solid #0099ff;
+  background: #262626;
+  border-radius: 0.75rem;
+  margin: auto;
+  font-family: Roboto, sans-serif;
+}
+
+.register .inputField label {
+  color: white;
+}
+
+.register .inputField input:focus-visible,
+.addInventory .inputField input:focus-visible,
+.addInventory .inputField textarea:focus-visible,
+.addInventory .inputField select:focus-visible {
+  outline-color: #0099ff;
+}
+
+.register .inputField .inputFieldInfo,
+.register .inputFieldInfo:first-child {
+  color: #3eb2ff;
+}
+
+.register .formBtn,
+.addInventory .formBtn {
+  border-color: white;
+  background-color: #0099ff;
+}
+
+.register .formBtn:hover {
+  cursor: pointer;
+  animation: buttonHoverLight 3s linear infinite;
+}
+
+/* Management View */
+.mgmtView p {
+  font-size: 1rem;
+  font-family: Roboto, sans-serif;
+  margin: 0;
+}
+
+.mgmtView p a {
+  color: #007acc;
+}
+
+/* Add Classification View */
+
+.addClassification .inputField {
+  margin-bottom: 0;
+}
+
+/* Add Vehicle View */
+.addInventory .inputField label {
+  color: white;
+}
+
+.addInventory .inputFieldInfo {
+  color: #3eb2ff;
+}
+
+.addInventory .inputField select {
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.addInventory .inputField select option:hover {
+  cursor: pointer;
+  color: #007acc;
+  background: #007acc;
+}
+
+.addInventory .inputField textarea {
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  font-family: "Roboto", sans-serif;
+}
+
 /* Footer */
 footer {
   margin: 1rem 0;
@@ -361,5 +522,41 @@ footer {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes buttonHoverDark {
+  0% {
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 1);
+  }
+  50% {
+    box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes buttonHoverLight {
+  0% {
+    box-shadow: 0 0 4px 2px rgba(255, 255, 255, 1);
+  }
+  50% {
+    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 3px 1px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0%);
   }
 }

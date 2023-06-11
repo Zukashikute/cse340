@@ -94,6 +94,32 @@ Util.buildDetailView = async (data) => {
    return detail
 }
 
+/* **************************************
+* Build the management vehicle view HTML
+* ************************************ */
+Util.buildVehicleManagementView = () => {
+   let management
+   management = `
+                <div class="mgmtView">
+                  <p><a href="../../inv/addclassification">Add New Classifications</a></p>
+                  <p><a href="../../inv/addinventory">Add New Vehicle</a></p>
+                </div>
+                `
+   return management
+}
+
+/* **************************************
+* Build classification options field - add inventory form.
+* ************************************ */
+Util.buildOptions = async (req, res, next) => {
+   let data = await invModel.getClassifications()
+   let options;
+   data.rows.forEach(row => {
+      options += `<option value="${row.classification_id}"> ${row.classification_name} </option>`
+   })
+   return options
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
