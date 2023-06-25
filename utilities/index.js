@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -95,28 +97,19 @@ Util.buildDetailView = async (data) => {
 }
 
 /* **************************************
-* Build the management vehicle view HTML
-* ************************************ */
-Util.buildVehicleManagementView = () => {
-   let management
-   management = `
-                <div class="mgmtView">
-                  <p><a href="../../inv/addclassification">Add New Classifications</a></p>
-                  <p><a href="../../inv/addinventory">Add New Vehicle</a></p>
-                </div>
-                `
-   return management
-}
-
-/* **************************************
 * Build classification options field - add inventory form.
 * ************************************ */
-Util.buildOptions = async (req, res, next) => {
+Util.buildOptions = async (optionSelected) => {
    let data = await invModel.getClassifications()
-   let options;
+   let options = `
+                  <select name="classification_id" id="classificationList" required>
+                     <option selected disabled hidden>
+                        Choose a classification
+                     </option>`
    data.rows.forEach(row => {
-      options += `<option value="${row.classification_id}"> ${row.classification_name} </option>`
+      options += `<option value="${row.classification_id}" ${row.classification_id === Number(optionSelected) ? 'selected' : ''}> ${row.classification_name} </option>`
    })
+   options += `</select>`
    return options
 }
 
@@ -126,5 +119,40 @@ Util.buildOptions = async (req, res, next) => {
  * General Error Handling
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+   if (req.cookies.jwt) {
+      jwt.verify(
+         req.cookies.jwt,
+         process.env.ACCESS_TOKEN_SECRET,
+         function (err, accountData) {
+            if (err) {
+               req.flash("Please log in")
+               res.clearCookie("jwt")
+               return res.redirect("/account/login")
+            }
+            res.locals.accountData = accountData
+            res.locals.loggedin = 1
+            next()
+         })
+   } else {
+      next()
+   }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+Util.checkLogin = (req, res, next) => {
+   if (res.locals.loggedin) {
+      next()
+   } else {
+      req.flash("notice", "Please log in.")
+      return res.redirect("/account/login")
+   }
+}
 
 module.exports = Util

@@ -30,4 +30,21 @@ router.post('/addinventory', classValidate.inventoryRules(),
    classValidate.checkInvData,
    utilities.handleErrors(invController.addInventory));
 
+// Select an Item from Inventory Activity
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+// Update an Item from Inventory Activity
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventory))
+
+// Processing the update of an Item from Inventory Activity
+router.post("/update/", classValidate.newInventoryRules(),
+   classValidate.checkUpdateData,
+   utilities.handleErrors(invController.updateInventory))
+
+// Delete an Invetory Item Activity
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteInventory))
+
+// Process the deletion of an Invetory Item
+router.post("/delete/", utilities.handleErrors(invController.deleteInventory))
+
 module.exports = router;

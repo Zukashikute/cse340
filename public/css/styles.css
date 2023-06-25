@@ -11,8 +11,29 @@ body {
   background-image: none;
 }
 
-.errorDescription {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+thead {
+  font-family: David Libre, serif;
+}
+
+p,
+a,
+li,
+span,
+select,
+textarea,
+option,
+tbody,
+label {
   font-family: Roboto, sans-serif;
+}
+
+.errorDescription {
   font-size: 1.5rem;
   font-weight: 500;
   animation: zoomInOut 3s linear infinite;
@@ -37,7 +58,6 @@ body {
 }
 
 .siteName a {
-  font-family: Roboto, sans-serif;
   font-size: 2rem;
   text-decoration: none;
   color: #262626;
@@ -45,7 +65,6 @@ body {
 }
 
 #tools a {
-  font-family: Roboto, sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   text-decoration: none;
@@ -65,10 +84,9 @@ body {
   padding-inline-start: 0;
 }
 
-.navLinks ul li {
+.navLinks ul {
   list-style-type: none;
   font-size: 1rem;
-  font-family: Roboto, sans-serif;
   padding: 0.5rem 0rem;
 }
 
@@ -79,13 +97,11 @@ body {
 
 /* Body */
 main > h1 {
-  font-family: David Libre, serif;
   color: #262626;
   font-weight: 700;
 }
 
 .notice {
-  font-family: Roboto, sans-serif;
   font-style: italic;
   text-align: center;
   font-weight: 600;
@@ -144,7 +160,6 @@ section .btnContainer button {
   align-items: center;
   padding: 0.75rem 1rem;
   border-color: rgba(255, 255, 255, 0.5);
-  font-family: Roboto, sans-serif;
   font-size: 1rem;
   font-weight: 500;
 }
@@ -158,7 +173,6 @@ article {
 }
 
 article > div h2 {
-  font-family: David Libre, serif;
   color: #262626;
 }
 
@@ -200,7 +214,6 @@ article > div h2 {
 }
 
 .partsContainer a {
-  font-family: Roboto, serif;
   font-size: 0.9rem;
 }
 
@@ -209,7 +222,6 @@ article > div h2 {
 }
 
 .reviewSection nav ul li {
-  font-family: Roboto, serif;
   color: #262626;
   font-size: 1rem;
   padding-bottom: 0.5rem;
@@ -262,7 +274,6 @@ article > div h2 {
 }
 
 .namePrice span {
-  font-family: Roboto, sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
 }
@@ -288,7 +299,6 @@ article > div h2 {
 }
 
 .vehicleContainer div:last-child p {
-  font-family: Roboto, sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   padding: 0.5rem 0.75rem;
@@ -306,7 +316,6 @@ article > div h2 {
 }
 
 .vehicleContainer div:last-child p span {
-  font-family: Roboto, sans-serif;
   font-size: 1rem;
   font-weight: 400;
 }
@@ -364,7 +373,6 @@ article > div h2 {
   background: #3eb2ff;
   border-radius: 0.75rem;
   margin: auto;
-  font-family: Roboto, sans-serif;
 }
 
 .formLink {
@@ -384,7 +392,6 @@ article > div h2 {
   background: #262626;
   border-radius: 0.75rem;
   margin: auto;
-  font-family: Roboto, sans-serif;
 }
 
 .register .inputField label {
@@ -417,7 +424,6 @@ article > div h2 {
 /* Management View */
 .mgmtView p {
   font-size: 1rem;
-  font-family: Roboto, sans-serif;
   margin: 0;
 }
 
@@ -440,15 +446,16 @@ article > div h2 {
   color: #3eb2ff;
 }
 
-.addInventory .inputField select {
+.addInventory .inputField select,
+#classificationList {
   padding: 0.35rem;
   border-radius: 0.25rem;
   font-size: 0.85rem;
-  font-family: "Roboto", sans-serif;
   cursor: pointer;
 }
 
-.addInventory .inputField select option:hover {
+.addInventory .inputField select option:hover,
+#classificationList option:hover {
   cursor: pointer;
   color: #007acc;
   background: #007acc;
@@ -458,7 +465,18 @@ article > div h2 {
   padding: 0.35rem;
   border-radius: 0.25rem;
   font-size: 0.85rem;
-  font-family: "Roboto", sans-serif;
+}
+
+/* Unit 05 Inventory Display */
+#inventoryDisplay {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#inventoryDisplay thead {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
 }
 
 /* Footer */
@@ -468,7 +486,6 @@ footer {
 
 .copyright {
   font-size: 0.8rem;
-  font-family: Roboto, sans-serif;
   color: #262626;
   margin: 0;
 }

@@ -19,9 +19,14 @@ router.post('/register',
 )
 
 // Process login attempt
-router.post('/login', regValidate.loginRules(), regValidate.checkLoginData, (req, res) => {
-   res.status(200).send('login process ')
-});
+router.post('/login',
+   regValidate.loginRules(),
+   regValidate.checkLoginData,
+   utilities.handleErrors(accountController.accountLogin)
+)
+
+// Unit 05 JWT Auth Activity
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
 
 
 module.exports = router

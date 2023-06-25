@@ -14,6 +14,7 @@ const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require("./database")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -36,13 +37,20 @@ app.use(function (req, res, next) {
   next()
 })
 
+// Unit 4, Process Registration Activity
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+// Unit 05 Login Activity
+app.use(cookieParser())
+// Unit 05 Login Process Activity
+app.use(utilities.checkJWTToken)
 
 // View Engine and Templates
 app.set("view engine", "ejs")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") // not at views root
+
 
 /* ***********************
  * Routes
