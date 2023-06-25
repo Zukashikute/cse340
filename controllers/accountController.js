@@ -115,5 +115,103 @@ const buildManagement = async (req, res, next) => {
    })
 }
 
+/* ****************************************
+*  Log out process
+* *************************************** */
+async function logoutProcess(req, res, next) {
+   res.clearCookie("jwt");
+   return res.redirect("/");
+}
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildManagement }
+/* ****************************************
+ *  Deliver Update view
+ * ************************************ */
+const updateAccountView = async (req, res, next) => {
+   const account_id = parseInt(req.params.accountId)
+   let nav = await utilities.getNav()
+   const itemData = await accountModel.getAccountById(account_id)
+   res.render("account/update", {
+      title: "Edit Account",
+      nav,
+      errors: null,
+      account_firstname: itemData.account_firstname,
+      account_lastname: itemData.account_lastname,
+      account_email: itemData.account_email,
+      account_id: itemData.account_id,
+   })
+}
+
+/* ****************************************
+*  Process Update Account
+* *************************************** */
+const updateAccount = async (req, res) => {
+   let nav = await utilities.getNav()
+   const { account_firstname, account_lastname, account_email, account_id } = req.body
+   const upAccount = await accountModel.updateAccount(account_firstname, account_lastname, account_email, account_id)
+   const accountData = await accountModel.getAccountById(account_id)
+   if (upAccount) {
+      req.flash(
+         "notice",
+         `Congratulations, your information has been updated.`
+      )
+      delete accountData.account_password
+      res.clearCookie("jwt");
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+      return res.redirect("/account/")
+   } else {
+      req.flash("notice", "Sorry, the update failed.")
+      res.status(501).render("account/", {
+         title: "Account Management",
+         nav,
+         errors: null,
+      })
+   }
+}
+
+/* ****************************************
+*  Process Update Password
+* *************************************** */
+const updatePassword = async (req, res, next) => {
+
+   const { account_id, account_password } = req.body
+
+   // Hash the password before storing
+   let hashedPassword
+   try {
+      // regular password and cost (salt is generated automatically)
+      hashedPassword = await bcrypt.hashSync(account_password, 10)
+   } catch (error) {
+      req.flash("notice", 'Sorry, there was an error processing the update.')
+      res.status(500).redirect("/account")
+   }
+
+   const upPassword = await accountModel.updatePassword(hashedPassword, account_id)
+
+   if (upPassword) {
+      req.flash(
+         "notice",
+         `Congratulations, your password was updated.`
+      )
+      res.status(201).redirect("/account")
+
+   } else {
+
+      req.flash("notice", "Sorry, the update failed.")
+      res.status(501).redirect("/account/update/" + account_id)
+
+   }
+
+}
+
+module.exports = {
+   buildLogin,
+   buildRegister,
+   registerAccount,
+   accountLogin,
+   buildManagement,
+   logoutProcess,
+   updateAccountView,
+   updateAccount,
+   updatePassword
+}

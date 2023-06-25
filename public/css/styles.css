@@ -384,6 +384,16 @@ article > div h2 {
 }
 
 /* Register View */
+.register .updateInfo {
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.register .updateInfo h2 {
+  margin: 0;
+}
+
 .register,
 .addInventory {
   max-width: 300px;
@@ -477,6 +487,11 @@ article > div h2 {
   font-size: 1.25rem;
   font-weight: 500;
   margin-bottom: 0.5rem;
+}
+
+/* Update Account */
+.updatePass {
+  margin-top: 1rem;
 }
 
 /* Footer */

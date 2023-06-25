@@ -6,7 +6,20 @@
 
 <%- messages() %>
 
-<p class="welcomeMessage">Welcome</p>
+<h2 class="welcomeMessage">
+  Welcome
+  <% if(locals.accountData){ %>
+    <%= locals.accountData.account_firstname %>
+  <% } %> 
+</h2>
 <p>You're logged in.</p>
+<p><a href="/account/update/<%= locals.accountData.account_id%>">Edit Account Information</a></p>
+
+<% if(locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
+  <div id="accountMenu">
+  <h3>Inventory Management</h3>
+  <p><a href="/inv/">Manage Inventory</a></p>
+  </div>
+<% } %>
 
 

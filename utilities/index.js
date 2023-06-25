@@ -155,4 +155,13 @@ Util.checkLogin = (req, res, next) => {
    }
 }
 
+Util.checkPermission = (req, res, next) => {
+   const type = res.locals.accountData.account_type
+   if(type == "Client") {
+     return res.redirect("/account/")
+   } else {
+     next()
+   }
+ }
+
 module.exports = Util

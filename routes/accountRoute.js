@@ -11,6 +11,15 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route to build inventory by classification view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+// Unit 05 JWT Auth Activity
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
+
+//Route for logout process
+router.get("/logout", utilities.handleErrors(accountController.logoutProcess));
+
+// Route to Update Account view
+router.get("/update/:accountId", utilities.handleErrors(accountController.updateAccountView))
+
 // Route to post info in database
 router.post('/register',
    regValidate.registrationRules(),
@@ -25,8 +34,20 @@ router.post('/login',
    utilities.handleErrors(accountController.accountLogin)
 )
 
-// Unit 05 JWT Auth Activity
-router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement))
+// Process the update for account and password
+router.post(
+   "/",
+   regValidate.accountRules(),
+   regValidate.checkUpdateData,
+   utilities.handleErrors(accountController.updateAccount)
+)
+
+router.post(
+   "/update/updatepassword",
+   regValidate.passwordRules(),
+   regValidate.checkPasswordData,
+   utilities.handleErrors(accountController.updatePassword)
+)
 
 
 module.exports = router
