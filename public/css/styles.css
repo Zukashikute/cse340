@@ -17,7 +17,8 @@ h3,
 h4,
 h5,
 h6,
-thead {
+thead,
+th {
   font-family: David Libre, serif;
 }
 
@@ -29,6 +30,7 @@ select,
 textarea,
 option,
 tbody,
+td,
 label {
   font-family: Roboto, sans-serif;
 }
@@ -492,6 +494,56 @@ article > div h2 {
 /* Update Account */
 .updatePass {
   margin-top: 1rem;
+}
+
+/* Messages Table */
+#inboxTable {
+  table-layout: fixed;
+  width: 80%;
+  margin: auto auto;
+  border: 1px solid #0099ff;
+  border-radius: 0.25rem;
+}
+
+#inboxTable tr th {
+  font-size: "1.25rem";
+  font-weight: 600;
+  background: #262626;
+  color: white;
+  padding: 0.5rem 0.75rem;
+}
+
+#inboxTable tr td {
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+}
+
+#replyForm {
+  display: none;
+  margin-bottom: 1rem;
+}
+
+#replyForm .btnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.replyBtnContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+}
+
+#messageview {
+  width: 80%;
+  margin: auto auto 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #262626;
+  background: #0099ff;
+  padding: 0.5rem 1rem;
 }
 
 /* Footer */

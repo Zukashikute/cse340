@@ -1,5 +1,6 @@
 const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
+const messageModel = require("../models/message-model")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
@@ -109,9 +110,14 @@ const accountLogin = async (req, res) => {
 * *************************************** */
 const buildManagement = async (req, res, next) => {
    let nav = await utilities.getNav()
+   let account_id = res.locals.accountData.account_id
+   let data = await messageModel.getMessage(account_id)
+   let number = await utilities.buildUnreadMessages(data)
    res.render("account/management", {
       title: "Account Management",
       nav,
+      number,
+      errors: null,
    })
 }
 
